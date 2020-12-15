@@ -1,42 +1,34 @@
-import React, { useState } from 'react';
-import { Card, ListGroup, ListGroupItem, Form, Button } from 'react-bootstrap';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const PizzaCard = ({ pizza }) => {
-  const [size, setSize] = useState('small');
-  const [qty, setQty] = useState(1);
+import { Card, ListGroup, Row, Col } from 'react-bootstrap';
+
+const PizzaCard = ({ product }) => {
   return (
     <Card className='my-3 p-3 rounded'>
-      <Card.Img src={pizza.image} variant='top' />
+      <Link to={`/product/${product.id}`}>
+        <Card.Img src={product.image} variant='top' />
+      </Link>
 
       <Card.Body>
-        <Card.Title as='div'>
-          <strong>{pizza.name}</strong>
-        </Card.Title>
+        <Link to={`/product/${product.id}`}>
+          <Card.Title as='div'>
+            <strong>{product.name}</strong>
+          </Card.Title>
+        </Link>
 
         <Card.Text as='div'></Card.Text>
-        <Card.Text as='span'>{pizza.ingredients}</Card.Text>
+        <Card.Text as='span'>{product.ingredients}</Card.Text>
       </Card.Body>
+
       <ListGroup>
-        <ListGroupItem>
-          <Form.Control
-            as='select'
-            value={size}
-            onChange={(e) => {
-              setSize(e.target.value);
-            }}>
-            <option value={pizza.price.small} key='small'>
-              Small ${pizza.price.small}
-            </option>
-            <option value={pizza.price.medium} key='medium'>
-              Medium ${pizza.price.medium}
-            </option>
-            <option value={pizza.price.big} key='big'>
-              Big ${pizza.price.big}
-            </option>
-          </Form.Control>
-        </ListGroupItem>
         <ListGroup.Item>
-          <Button variant='success'>Add to Cart</Button>
+          <Row>
+            <Col>Price:</Col>
+            <Col>
+              <strong>${product.price}</strong>
+            </Col>
+          </Row>
         </ListGroup.Item>
       </ListGroup>
     </Card>
