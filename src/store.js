@@ -7,7 +7,7 @@ import {
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import { authReducer } from './reducers/authReducers';
-import { logger } from 'redux-logger';
+// import { logger } from 'redux-logger';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -25,7 +25,7 @@ const initialState = {
   cart: { cartItems: cartItemsFromStorage },
 };
 
-const middleware = [thunk, logger];
+const middleware = [thunk];
 
 const store = createStore(
   reducer,

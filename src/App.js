@@ -9,16 +9,24 @@ import HomeScreen from './screens/HomeScreen';
 import CartScreen from './screens/CartScreen';
 import ProductScreen from './screens/ProductScreen';
 import { connect } from 'react-redux';
-import { auth } from './configs/firebase.config';
+import { auth, createUserDoc } from './configs/firebase.config';
 import { setCurrentUser, clearCurrentUser } from './actions/authActions';
 
 function App({ currentUser, setCurrentUser, clearCurrentUser }) {
   useEffect(() => {
     let unsubscribeFromAuth = null;
 
-    unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        setCurrentUser(user);
+        const userRef = await createUserDoc(user);
+
+        userRef.onSnapshot((snapShot) => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
+        });
+        // setCurrentUser(user);
       } else {
         clearCurrentUser();
       }

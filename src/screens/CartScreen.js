@@ -11,7 +11,12 @@ import {
   Card,
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+import {
+  addToCart,
+  removeFromCart,
+  increaseQty,
+  decreaseQty,
+} from '../actions/cartActions';
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -36,6 +41,7 @@ const CartScreen = ({ match, location, history }) => {
   const checkoutHandler = () => {
     // history.push('/login?redirect=shipping');
   };
+
   return (
     <Row>
       <Col md={8}>
@@ -48,7 +54,7 @@ const CartScreen = ({ match, location, history }) => {
           <ListGroup variant='flush'>
             {/* These data come from the action */}
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
+              <ListGroup.Item key={item.name}>
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
@@ -58,7 +64,8 @@ const CartScreen = ({ match, location, history }) => {
                   </Col>
                   <Col md={2}>{item.price}</Col>
                   <Col md={2}>
-                    {/* <Form.Control
+                    {/* Qty {item.qty} */}
+                    <Form.Control
                       as='select'
                       value={item.qty}
                       onChange={(e) =>
@@ -66,12 +73,22 @@ const CartScreen = ({ match, location, history }) => {
                           addToCart(item.product, Number(e.target.value))
                         )
                       }>
-                      {[...Array(item.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </Form.Control> */}
+                      <option key='1' value='1'>
+                        1
+                      </option>
+                      <option key='2' value='2'>
+                        2
+                      </option>
+                      <option key='3' value='3'>
+                        3
+                      </option>
+                      <option key='4' value='4'>
+                        4
+                      </option>
+                      <option key='5' value='5'>
+                        5
+                      </option>
+                    </Form.Control>
                   </Col>
                   <Col md={2}>
                     <Button
