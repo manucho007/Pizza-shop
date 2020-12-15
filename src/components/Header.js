@@ -1,7 +1,10 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Container, Nav, Navbar } from 'react-bootstrap';
-const Header = () => {
+import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import { auth } from '../configs/firebase.config';
+import { connect } from 'react-redux';
+
+const Header = ({ currentUser }) => {
   return (
     <header>
       <Navbar bg='dark' variant='dark' collapseOnSelect expand='lg'>
@@ -17,11 +20,28 @@ const Header = () => {
                   <i className='fas fa-shopping-cart'></i> Cart
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/login'>
+              {!currentUser && (
+                <LinkContainer to='/sign-in'>
+                  <Nav.Link>
+                    <i className='fas fa-user'></i> Sign In
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+              {!currentUser && (
+                <LinkContainer to='/sign-up'>
+                  <Nav.Link>
+                    <i className='fas fa-user'></i> Sign Up
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+              {currentUser && currentUser ? (
                 <Nav.Link>
-                  <i className='fas fa-user'></i> Sign In
+                  <Button variant='danger' onClick={() => auth.signOut()}>
+                    {' '}
+                    <i className='fas fa-user' aria-hidden='true'></i> Sign out
+                  </Button>
                 </Nav.Link>
-              </LinkContainer>
+              ) : null}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -30,4 +50,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.auth.currentUser,
+});
+
+export default connect(mapStateToProps, null)(Header);

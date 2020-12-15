@@ -9,8 +9,24 @@ import HomeScreen from './screens/HomeScreen';
 import CartScreen from './screens/CartScreen';
 import ProductScreen from './screens/ProductScreen';
 import { connect } from 'react-redux';
+import { auth } from './configs/firebase.config';
+import { setCurrentUser, clearCurrentUser } from './actions/authActions';
 
-function App({ currentUser }) {
+function App({ currentUser, setCurrentUser, clearCurrentUser }) {
+  useEffect(() => {
+    let unsubscribeFromAuth = null;
+
+    unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        clearCurrentUser();
+      }
+    });
+
+    return () => unsubscribeFromAuth();
+  }, [currentUser, setCurrentUser, clearCurrentUser]);
+
   return (
     <Router>
       <Header />
@@ -32,5 +48,9 @@ const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
 });
 
-export default connect(mapStateToProps)(App);
-// export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  clearCurrentUser: () => dispatch(clearCurrentUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
