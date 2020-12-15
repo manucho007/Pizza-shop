@@ -6,11 +6,14 @@ import {
   productDetailsReducer,
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
+import { authReducer } from './reducers/authReducers';
+import { logger } from 'redux-logger';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
+  auth: authReducer,
 });
 
 // Get data from localStorage
@@ -22,7 +25,7 @@ const initialState = {
   cart: { cartItems: cartItemsFromStorage },
 };
 
-const middleware = [thunk];
+const middleware = [thunk, logger];
 
 const store = createStore(
   reducer,
