@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { auth } from '../configs/firebase.config';
 
-const SignIn = () => {
+const SignIn = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,6 +11,7 @@ const SignIn = () => {
 
     try {
       auth.signInWithEmailAndPassword(email, password);
+      history.push('/');
     } catch (error) {
       console.error(error);
     }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { auth } from '../configs/firebase.config';
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -13,6 +13,7 @@ const SignUp = () => {
     if (password === passwordConfirmation) {
       auth
         .createUserWithEmailAndPassword(email, password)
+        .then(history.push('/'))
         .catch((err) => console.error(err));
     } else {
       alert('Password do not match');
