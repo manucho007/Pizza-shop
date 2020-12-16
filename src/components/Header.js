@@ -11,13 +11,13 @@ const Header = ({ currentUser }) => {
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>
-              <img
+              {/* <img
                 src='/logoManu.png'
                 width='90'
                 height='35'
                 className='d-inline-block align-top'
                 alt='React Bootstrap logo'
-              />{' '}
+              />{' '} */}
               Manu's Pizza
             </Navbar.Brand>
           </LinkContainer>
@@ -29,28 +29,35 @@ const Header = ({ currentUser }) => {
                   <i className='fas fa-shopping-cart'></i> Cart
                 </Button>
               </LinkContainer>
-              {!currentUser && (
-                <LinkContainer to='/sign-in'>
-                  <Button variant='dark'>
-                    <i className='fas fa-user'></i> Sign In
-                  </Button>
-                </LinkContainer>
-              )}
-              {!currentUser && (
-                <LinkContainer to='/sign-up'>
-                  <Button variant='dark'>
-                    <i className='fas fa-user'></i> Sign Up
-                  </Button>
-                </LinkContainer>
-              )}
               {currentUser && currentUser ? (
-                <Nav.Link>
-                  <Button variant='danger' onClick={() => auth.signOut()}>
-                    {' '}
-                    <i className='fas fa-user' aria-hidden='true'></i> Sign out
-                  </Button>
-                </Nav.Link>
-              ) : null}
+                <>
+                  <Nav.Link>
+                    <Button variant='danger' onClick={() => auth.signOut()}>
+                      <i className='fas fa-user' aria-hidden='true'></i> Sign
+                      out
+                    </Button>
+                  </Nav.Link>
+                  <LinkContainer to='/history'>
+                    <Button variant='info'>
+                      <i className='fa fa-history' aria-hidden='true'></i>
+                      History
+                    </Button>
+                  </LinkContainer>
+                </>
+              ) : (
+                <>
+                  <LinkContainer to='/sign-up'>
+                    <Button variant='dark'>
+                      <i className='fas fa-user'></i> Sign Up
+                    </Button>
+                  </LinkContainer>
+                  <LinkContainer to='/sign-in'>
+                    <Button variant='dark'>
+                      <i className='fas fa-user'></i> Sign In
+                    </Button>
+                  </LinkContainer>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
