@@ -10,28 +10,37 @@ const Header = ({ currentUser }) => {
       <Navbar bg='dark' variant='dark' collapseOnSelect expand='lg'>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>Manu's Pizza</Navbar.Brand>
+            <Navbar.Brand>
+              <img
+                src='/logoManu.png'
+                width='90'
+                height='35'
+                className='d-inline-block align-top'
+                alt='React Bootstrap logo'
+              />{' '}
+              Manu's Pizza
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
-                <Nav.Link>
+                <Button variant='info'>
                   <i className='fas fa-shopping-cart'></i> Cart
-                </Nav.Link>
+                </Button>
               </LinkContainer>
               {!currentUser && (
                 <LinkContainer to='/sign-in'>
-                  <Nav.Link>
+                  <Button variant='dark'>
                     <i className='fas fa-user'></i> Sign In
-                  </Nav.Link>
+                  </Button>
                 </LinkContainer>
               )}
               {!currentUser && (
                 <LinkContainer to='/sign-up'>
-                  <Nav.Link>
+                  <Button variant='dark'>
                     <i className='fas fa-user'></i> Sign Up
-                  </Nav.Link>
+                  </Button>
                 </LinkContainer>
               )}
               {currentUser && currentUser ? (
