@@ -3,7 +3,14 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  // Add your firebase config here
+  // Change for your own configuration
+  apiKey: 'AIzaSyA_oVDRyqFhfxPUfeRntSLSGk6DHl1YdE8',
+  authDomain: 'devf-3bee8.firebaseapp.com',
+  databaseURL: 'https://devf-3bee8.firebaseio.com',
+  projectId: 'devf-3bee8',
+  storageBucket: 'devf-3bee8.appspot.com',
+  messagingSenderId: '329327565336',
+  appId: '1:329327565336:web:c29fd1c9f814076e',
 };
 
 firebase.initializeApp(firebaseConfig);
