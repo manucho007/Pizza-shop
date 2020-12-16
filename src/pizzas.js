@@ -5,11 +5,7 @@ const pizzas = [
     image: '/images/pepperoni.jpg',
     name: 'Pepperoni',
     ingredients: 'Pepperoni, tomato sauce, mozzarella, tomatoes',
-    price: {
-      small: 8,
-      medium: 11,
-      big: 15,
-    },
+    price: 9.99,
   },
   {
     id: 2,
@@ -17,11 +13,7 @@ const pizzas = [
     image: '/images/margherita.jpg',
     name: 'Margherita',
     ingredients: 'Italian herbs, tomato sauce, mozzarella, tomatoes',
-    price: {
-      small: 9,
-      medium: 11.5,
-      big: 16,
-    },
+    price: 9.99,
   },
   {
     id: 3,
@@ -29,11 +21,7 @@ const pizzas = [
     image: '/images/carbonara.jpg',
     name: 'Carbonara',
     ingredients: 'Bacon, carbonara sauce, mozzarella, parmesan, tomatoes',
-    price: {
-      small: 7,
-      medium: 10,
-      big: 14,
-    },
+    price: 9.99,
   },
   {
     id: 4,
@@ -41,11 +29,7 @@ const pizzas = [
     image: '/images/hawaiian.jpg',
     name: 'Hawaiian',
     ingredients: 'Chicken, tomato sauce, mozzarella, pineapple',
-    price: {
-      small: 7.5,
-      medium: 10,
-      big: 14.5,
-    },
+    price: 9.99,
   },
   {
     id: 5,
@@ -54,11 +38,7 @@ const pizzas = [
     name: 'Meat lovers',
     ingredients:
       'Chicken, bacon, ham, spicy pepperoni, tomato sauce, spicy chorizo, mozzarella',
-    price: {
-      small: 10,
-      medium: 12,
-      big: 16,
-    },
+    price: 9.99,
   },
   {
     id: 6,
@@ -67,11 +47,7 @@ const pizzas = [
     name: 'Italian',
     ingredients:
       'Italian herbs, spicy pepperoni, tomato sauce, mushrooms, mozzarella, black olives',
-    price: {
-      small: 8,
-      medium: 11,
-      big: 15,
-    },
+    price: 9.99,
   },
   {
     id: 7,
@@ -79,11 +55,7 @@ const pizzas = [
     image: '/images/ham-and-mushrooms.jpg',
     name: 'Ham and mushrooms',
     ingredients: 'Ham, tomato sauce, champignons, mozzarella',
-    price: {
-      small: 8,
-      medium: 11,
-      big: 15,
-    },
+    price: 9.99,
   },
   {
     id: 8,
@@ -91,11 +63,7 @@ const pizzas = [
     image: '/images/cheese-pizza.jpg',
     name: 'Cheese pizza',
     ingredients: 'Tomato sauce, mozzarella',
-    price: {
-      small: 8,
-      medium: 11,
-      big: 15,
-    },
+    price: 9.99,
   },
   {
     id: 9,
@@ -104,11 +72,7 @@ const pizzas = [
     name: 'Mexican',
     ingredients:
       'Chicken, tomato sauce, bell pepper, red onion, mozzarella, spicy jalapenos, tomatoes, salsa sauce',
-    price: {
-      small: 10,
-      medium: 13,
-      big: 17,
-    },
+    price: 9.99,
   },
   {
     id: 10,
@@ -116,11 +80,7 @@ const pizzas = [
     image: '/images/chicken-pizza.jpg',
     name: 'Chicken-pizza',
     ingredients: 'Chicken, ham, ranch sauce, mozzarella, tomatoes, garlic',
-    price: {
-      small: 8,
-      medium: 11,
-      big: 15,
-    },
+    price: 9.99,
   },
   {
     id: 11,
@@ -128,9 +88,7 @@ const pizzas = [
     image: '/images/coca-cola.jpg',
     name: 'Coca-cola',
     volume: 0.5,
-    price: {
-      small: 3,
-    },
+    price: 9.99,
   },
   {
     id: 12,
@@ -138,9 +96,7 @@ const pizzas = [
     image: '/images/sprite.jpg',
     name: 'Sprite',
     volume: 0.5,
-    price: {
-      small: 3,
-    },
+    price: 9.99,
   },
   {
     id: 13,
@@ -148,9 +104,7 @@ const pizzas = [
     image: '/images/fanta.jpg',
     name: 'Fanta',
     volume: 0.5,
-    price: {
-      small: 3,
-    },
+    price: 9.99,
   },
 ];
 export default pizzas;
