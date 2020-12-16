@@ -3,7 +3,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  //   Your config goes here
+  // Add your firebase config here
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -21,6 +21,40 @@ export const createUserDoc = async (user, contactInfo) => {
     }
   }
   return userRef;
+};
+
+export const createOrderDoc = async ({
+  currentUser,
+  cartItems,
+  totalPrice,
+  contactInfo,
+}) => {
+  const date = new Date().toLocaleString();
+  firestore
+    .doc(`users/${currentUser.id}`)
+    .collection('orders')
+    .add({ cartItems, date, totalPrice, contactInfo });
+};
+
+export const fetchHistoryDocs = async (currentUser) => {
+  const history = [];
+  await firestore
+    .doc(`users/${currentUser.id}`)
+    .collection('orders')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const { date, cartItems, totalPrice, cotactInfo } = doc.data();
+        history.push({
+          id: doc.id,
+          date,
+          cartItems,
+          totalPrice,
+          cotactInfo,
+        });
+      });
+    });
+  return history;
 };
 
 export const auth = firebase.auth();
