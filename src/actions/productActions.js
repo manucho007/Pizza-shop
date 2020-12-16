@@ -26,6 +26,7 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 export const listProductDetails = (id) => (dispatch) => {
+  // Just for this exercise I'll use the == instead of ===
   const pizza = pizzas.find((x) => x.id == id);
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });

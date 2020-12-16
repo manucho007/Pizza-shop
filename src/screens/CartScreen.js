@@ -11,14 +11,10 @@ import {
   Card,
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import {
-  addToCart,
-  removeFromCart,
-  increaseQty,
-  decreaseQty,
-} from '../actions/cartActions';
+import Checkout from '../components/CheckOut';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
-const CartScreen = ({ match, location, history }) => {
+const CartScreen = ({ match, location }) => {
   const productId = match.params.id;
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
@@ -27,7 +23,16 @@ const CartScreen = ({ match, location, history }) => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems);
+  cart.qtyItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
+  cart.subTotal = cartItems
+    .reduce((acc, item) => acc + item.qty * item.price, 0)
+    .toFixed(2);
+  cart.totalPrice = cartItems
+    .reduce((acc, item) => acc + item.qty * item.price, 10.99)
+    .toFixed(2);
+  // console.log(
+  //   `This is cart${cartItems} QUANTITY${cart.qtyItems}, SUBTOTAL${cart.subTotal}, TOTAL${cart.totalPrice}`
+  // );
 
   useEffect(() => {
     if (productId) {
@@ -38,9 +43,9 @@ const CartScreen = ({ match, location, history }) => {
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
-  const checkoutHandler = () => {
-    // history.push('/login?redirect=shipping');
-  };
+  // const checkoutHandler = () => {
+  //   // history.push('/login?redirect=shipping');
+  // };
 
   return (
     <Row>
@@ -109,30 +114,19 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={4}>
         <Card>
           <ListGroup.Item>
-            <h2>
-              Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-              Items
-            </h2>
-            $
-            {cartItems
-              .reduce((acc, item) => acc + item.qty * item.price, 0)
-              .toFixed(2)}{' '}
-            + $10.99 for delivery
+            <h2>Subtotal ({cart.qtyItems}) Items</h2>${cart.subTotal} + $10.99
+            for delivery
           </ListGroup.Item>
+          <ListGroup.Item>Total: ${cart.totalPrice}</ListGroup.Item>
           <ListGroup.Item>
-            Total:{' '}
-            {cartItems
-              .reduce((acc, item) => acc + item.qty * item.price, 10.99)
-              .toFixed(2)}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <Button
+            {/* <Button
               type='button'
               className='btn-block'
               disabled={cartItems.length === 0}
               onClick={checkoutHandler}>
               Proceed to Checkout
-            </Button>
+            </Button> */}
+            <Checkout />
           </ListGroup.Item>
         </Card>
       </Col>
