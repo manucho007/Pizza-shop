@@ -7,6 +7,7 @@ import {
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import { authReducer } from './reducers/authReducers';
+import { firestoreReducer } from './reducers/firestoreReducers';
 // import { logger } from 'redux-logger';
 
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   cart: cartReducer,
   auth: authReducer,
+  firestore: firestoreReducer,
 });
 
 // Get data from localStorage
